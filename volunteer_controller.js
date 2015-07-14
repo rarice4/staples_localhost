@@ -128,7 +128,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
     
     ///////////////////////////////////////////
     $scope.updateLanguage = function(language){
-    
+      
       $scope.ln = {};
       var q = "SELECT translation_file FROM spreadsheets_volunteerism WHERE name ='" + language + "'"
         rbf_selectQuery(q, 1, function(data){ 
@@ -496,7 +496,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
               
   ///////////////////////////////////////////
   $scope.getCountrySelection = function(callback){
-
+      console.log("inside country selection")
       var integratedFields = [
         {field: "R9716968", grabField: "display_name", name: "displayName" }
       ]
@@ -504,6 +504,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
       var whereStatement = null
       utilityjs.getFromRollbase("country_data", null, integratedFields, whereStatement, function(data){               
         $scope.languageData = data;
+        console.info(data)
         getCountryData();
       })
 
@@ -615,7 +616,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
 
           utilityjs.getFromRollbase("volunteerism_event", standardFields, integratedFields, whereStatement, function(data){
 
-                  
+                  console.warn("!!!!!", data)
               $scope.orgData = []  
               $timeout(function(){
                 if (data != false){
@@ -637,8 +638,15 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
  
 
                   }
+
+                  $timeout(function(){
+                    $scope.page.current = section;
+                  });
                 }
                 else{
+                  alert("No programs are available in your country at this time")
+                  return
+
 
                 }
               });
@@ -648,9 +656,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
 
       }
       
-      $timeout(function(){
-          $scope.page.current = section;
-      });
+      
   }
   /////////////////////////////////////////// 
             
