@@ -231,6 +231,15 @@ $(function(){
 
                   "<div id='associate-info' class='row'>" +
                     "<div class='small-3 columns left'>" +
+                      "<label>Office Location:</label>" +
+                    "</div>" +
+                    "<div class='small-6 columns left'>" +
+                      "<input class='full-width' ng-model='rosterCollection.officeLocation' />" +
+                    "</div>" +
+                  "</div>" +
+
+                  "<div id='associate-info' class='row'>" +
+                    "<div class='small-3 columns left'>" +
                       "<label>{{mobile}}:</label>" + 
                     "</div>" +
                     "<div class='small-6 columns left'>" +
@@ -255,6 +264,24 @@ $(function(){
                     "</div>" +
                   "</div>" +
                 "</div>" +
+
+                "<div id='associate-info' class='row'>" +
+                    "<div class='small-3 columns left'>" +
+                      "<label>Attend Evening BBQ:</label>" +
+                    "</div>" +
+                    "<div class='small-6 columns left'>" +
+                      "<select ng-model='rosterCollection.bbq' ng-options='bbq as bbq for bbq in bbq' ng-init='rosterCollection.bbq = '' />" +
+                    "</div>" +
+                  "</div>" +
+
+                "<div id='associate-info' class='row'>" +
+                    "<div class='small-3 columns left'>" +
+                      "<label>Would you be able to use your car to transport associates for the event(car pool)?*: <span class='has-error right' ng-if='validateCheck.tshirt'>*required*</span></label>" +
+                    "</div>" +
+                    "<div class='small-6 columns left'>" +
+                      "<select ng-model='rosterCollection.carpool' ng-options='car as car for car in carpool' ng-init='rosterCollection.carpool = '' />" +
+                    "</div>" +
+                  "</div>" +
 
                 "<div class='small-12'>"  +
                   "<div ng-if='usingOrgData.fitnessFundraiser'>" +

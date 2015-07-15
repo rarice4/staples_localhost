@@ -602,7 +602,11 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
 $scope.highlightReq = function(){
   console.log("TEST")
   $("#req").css("background-color", "yellow")
-}  
+}
+///////
+
+$scope.bbq = ["Yes", "No"] 
+$scope.carpool=["1 Person","2 Person","3 Person","4 Person","5 Person","No"] 
 
   /////////////////////////////////////////// 
   $scope.activeSection = function(section){
