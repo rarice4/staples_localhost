@@ -159,7 +159,7 @@ $(function(){
                 "<span class='available'><strong>{{available}}: {{usingOrgData.openslots - usingOrgData.currently_registered}} </strong></span><br><br>" +
                 "<div class='required'>" +
                 // Allen - we need this below text translated
-                  "<p>*{{requireditemtext}}</p>" +
+                  "<p id='req'>*{{requireditemtext}}</p>" +
               "</div>" +
             "</div>" +
             "<hr/>" +
@@ -352,7 +352,7 @@ $(function(){
               "<div class='row'>" +
                 "<div class='small-12'>"  +
                   "<br><br>" +
-                  "<hr><br><center><button ng-disabled='rosterCollection.guests.length + 1 > (usingOrgData.openslots - usingOrgData.currently_registered) || loading.submit' class='button success' ng-click='submitForm()'>" +
+                  "<hr><br><center><button ng-disabled='rosterCollection.guests.length + 1 > (usingOrgData.openslots - usingOrgData.currently_registered) || loading.submit' class='button success' ng-click='submitForm();highlightReq()'>" +
                     "<span ng-if='rosterCollection.guests.length + 1 <= (usingOrgData.openslots - usingOrgData.currently_registered)' >{{submitbtn}} </span>" +
                     "<span ng-if='rosterCollection.guests.length + 1 >  (usingOrgData.openslots - usingOrgData.currently_registered)' >{{notenoughbtn}} </span>" +
                   "</button></center><hr>" +

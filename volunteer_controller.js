@@ -501,7 +501,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
         {field: "R9716968", grabField: "display_name", name: "displayName" }
       ]
 
-      var whereStatement = null
+      var whereStatement = "WHERE c_current_volunteer_programs >0"
       utilityjs.getFromRollbase("country_data", null, integratedFields, whereStatement, function(data){               
         $scope.languageData = data;
         console.info(data)
@@ -518,7 +518,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
           {field: "R9784000", grabField: "name", name: "groupings"}
         ]
         
-        var whereStatement = null
+        var whereStatement = "WHERE c_current_volunteer_programs >0"
         utilityjs.getFromRollbase("country_data", null, integratedFields, whereStatement, function(data){
            
           $scope.countryData = []
@@ -526,6 +526,7 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
           var i = data.nameList.length; while(i--){
           var name = data.nameList[i];
           $scope.countryData[name] = data[name];
+          console.log("FASFDSAFSADF")
           $scope.countryData[name].display = $scope.languageData[name]
           }
           $scope.countryData.nameList = data.nameList
@@ -550,20 +551,28 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
   $scope.pullLanguages = function(callback){
       var nameList =  $scope.countryData.nameList,
       list = [];
-      var i = nameList.length; while(i--){
-        name = nameList[i];
-        displayName = $scope.countryData[name].key;
-        displayLanguages = $scope.countryData[name].display.data.displayName;
-        rootLanguage = $scope.countryData[name].data.language
-        _array = displayLanguages;
+      
+        var i = nameList.length; 
+        while(i--){
         
-        _obj = [];
-        for (m = 0; m <  _array.length; m++){
-        _obj.push({name: _array[m], index: m})
-        
-        } 
-        list.push({raw: name, country: displayName, languages: _obj, root: rootLanguage})
-      }
+            name = nameList[i];
+            displayName = $scope.countryData[name].key;
+            console.info("displayname", displayName)
+
+            displayLanguages = $scope.countryData[name].display.data.displayName;
+            rootLanguage = $scope.countryData[name].data.language
+            _array = displayLanguages;
+            
+            _obj = [];
+            for (m = 0; m <  _array.length; m++){
+            _obj.push({name: _array[m], index: m})
+            
+            } 
+
+            list.push({raw: name, country: displayName, languages: _obj, root: rootLanguage})
+          
+        }
+
       callback(list)
   }
   ///////////////////////////////////////////
@@ -586,7 +595,14 @@ angular.module('myApp', ["ngSanitize", "truncate", "angularMoment"])
       }
       
   }
+
   /////////////////////////////////////////// 
+
+
+$scope.highlightReq = function(){
+  console.log("TEST")
+  $("#req").css("background-color", "yellow")
+}  
 
   /////////////////////////////////////////// 
   $scope.activeSection = function(section){

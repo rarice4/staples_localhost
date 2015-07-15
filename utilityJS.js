@@ -253,16 +253,16 @@ var utilityjs = function(){
                         n = standard.length; while(n--){
                           statement += ", " + standard[n].fieldLabel
                         }
-
+                        console.log("build OBJ")
                         var buildObject = {  meta: [], nameList: [] },
                             sql = "SELECT name, id " + statement + " FROM " + main + " " +  whereStatement;
 
                         /////////////////
 
-
+                        console.log(sql)
                         // start process
                         rbf_selectQuery(sql, 100000, function(data) {
-
+                            console.log("selectQuery")
                           if (data.length == 0){
                             // will return false if empty
                             callback(false)
